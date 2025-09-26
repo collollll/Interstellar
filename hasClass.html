@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="js/jquery-3.7.1.min.js"></script>
+  </head>
+  <body>
+    <button>버튼1</button>
+    <ul>
+      <li class="on">list1</li>
+      <li>list2</li>
+    </ul>
+
+    <!-- 
+    
+    hasClass() : 해당 선택자에 클래스가 있는지 없는지를 확인
+    $("선택자").hasClass("클래스명")
+
+    선택자에 클래스가 있으면 true, 선택자에 클래스가 없으면 false가 나옴    
+    
+    -->
+
+    <script>
+      $("button").on("click", function () {
+        let check = $(this).hasClass("on");
+        console.log(check);
+      });
+
+      $("li").on("click", function () {
+        let check = $(this).hasClass("on");
+        console.log(check);
+      });
+    </script>
+  </body>
+</html>

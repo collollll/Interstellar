@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+      }
+      ul {
+        list-style: none;
+      }
+      li {
+        width: 100%;
+        border-top: 1px solid #666;
+        border-bottom: 1px solid #666;
+      } /* 테두리를 이렇게 주면 중간에 있는 li들의 경우 선이 겹쳐서 2px로 더 두꺼워 보임 */
+
+      li:nth-child(2),
+      li:nth-child(3) {
+        /* margin-top: -1px; */
+      }
+      /* 이렇게 하면 중간에 있는 li들이 위로 1px씩 올라가게 돼서(겹치게 돼서) 중간에 있던 보더선이 전부 1px로 보이게 됨*/
+
+      li:not(:nth-child(1)) {
+        margin-top: -1px;
+      }
+      /* not() -> 괄호에 있는 애만 빼줌 >> 첫번째 li를 제외한 모든 li*/
+      /* 지금처럼 보더 선이 겹쳐서 li들을 1px 씩 올리고자 할때, li가 많으면 위의 방법처럼 하나하나 써넣기가 힘듦 -> 이럴 때 not을 사용 */
+
+      .title {
+        padding: 5px 0px;
+        background-color: rgba(0, 0, 0, 0.3);
+        padding-left: 20px;
+      }
+      .txt {
+        width: 90%;
+        margin: 10px auto 30px;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <li>
+        <div class="title">title01</div>
+        <div class="txt">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt unde
+          a, perferendis esse ab aliquid quasi ullam autem neque, cum pariatur
+          dolorum facere dolores accusantium facilis velit ipsa, iusto beatae?
+        </div>
+      </li>
+      <li>
+        <div class="title">title02</div>
+        <div class="txt">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt unde
+          a, perferendis esse ab aliquid quasi ullam autem neque, cum pariatur
+          dolorum facere dolores accusantium facilis velit ipsa, iusto beatae?
+        </div>
+      </li>
+      <li>
+        <div class="title">title03</div>
+        <div class="txt">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt unde
+          a, perferendis esse ab aliquid quasi ullam autem neque, cum pariatur
+          dolorum facere dolores accusantium facilis velit ipsa, iusto beatae?
+        </div>
+      </li>
+    </ul>
+
+    <script>
+      $("li").on("click", function () {
+        $("li .txt").slideUp();
+        $(this).children(".txt").slideToggle();
+      }); // 이러면 제대로 작동 안됨, 이미 열려있는 li를 누르면 올라갔다가 다시 내려가는 현상이 발생함
+
+      $("li").on("click", function () {
+        let isOn = $(this).hasClass("on");
+        if (isOn) {
+          // 조건문에 isOn == ture 뭐 이런거 안써도 됨, 어차피 isOn이 true/false인 상태라 ture일 때만 if문이 실행될 것
+          $(this).removeClass("on"); // 이걸 안붙이면 클릭한 li에 계속 on이 붙어있어서 한두번 클릭한 후에는 작동하지 않음
+          $(this).children(".txt").slideUp();
+        } else {
+          $("li").removeClass("on");
+          $(this).addClass("on");
+          $("li .txt").slideUp();
+          $(this).children(".txt").slideDown();
+        }
+      });
+    </script>
+  </body>
+</html>
