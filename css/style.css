@@ -105,7 +105,8 @@ h1 img {
   border-width: 0px;
   border-left: none;
   border-right: none;
-  transition: 0.5s;
+  transition: 0.7s;
+  opacity: 0;
 }
 .main .down h4 {
   font-size: 22px;
